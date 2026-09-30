@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Busy Family Activity Vault</title>
+<meta name="description" content="A quick activity finder for busy parents. Pick the moment, get a doable activity.">
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#27352d;background:#f7f0df;font-synthesis:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:#f7f0df;color:#27352d}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}
+.shell{overflow:hidden;background:#f7f0df}.topbar{max-width:1180px;margin:0 auto;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#27352d;font-size:11px;line-height:1.05;letter-spacing:.09em;text-transform:uppercase}.brand strong{font-size:14px;letter-spacing:.01em;text-transform:none}.mark{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:#e36d3c;color:#fff7ea;font-size:16px}.nav{display:flex;align-items:center;gap:18px}.nav button{border:0;background:transparent;color:#536057;font-size:13px;font-weight:700}.nav a,.primary{display:inline-flex;align-items:center;gap:10px;background:#c95d33;color:#fff;border-radius:999px;padding:12px 18px;text-decoration:none;font-size:13px;font-weight:800;box-shadow:0 6px 20px #c95d3326}
+.hero{max-width:1180px;margin:0 auto;padding:62px 28px 70px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:60px}.eyebrow{margin:0 0 13px;color:#a65c38;font-size:10px;font-weight:900;letter-spacing:.2em}.hero h1{margin:0;color:#26342c;font-family:Georgia,serif;font-size:clamp(52px,7vw,88px);line-height:.92;letter-spacing:-.055em}.hero h1 em,.banner h2 em{color:#c95d33;font-style:normal}.lede{max-width:590px;margin:28px 0 24px;color:#58655d;font-size:17px;line-height:1.65}.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.micro{color:#788279;font-size:11px}
+.art{position:relative;min-height:430px;border-radius:32px;overflow:hidden;background:#dce5d6;border:1px solid #cbd7c7;box-shadow:16px 18px 0 #e7d8be}.sun{position:absolute;width:150px;height:150px;border-radius:50%;background:#f0c85e;top:44px;right:58px}.floor{position:absolute;left:-10%;right:-10%;bottom:-90px;height:210px;border-radius:50%;background:#c4d1bd}.paper{position:absolute;width:240px;height:300px;border-radius:12px;background:#fffaf0;box-shadow:0 16px 35px #59645126}.back{left:19%;top:70px;background:#e9dfcc;transform:rotate(9deg)}.front{left:25%;top:57px;padding:26px;display:flex;flex-direction:column;transform:rotate(-7deg)}.star{color:#c95d33;font-size:26px}.label{margin-top:28px;color:#536057;font-size:12px;letter-spacing:.16em;line-height:1.35}.label b{color:#c95d33;font-size:21px;letter-spacing:-.02em}.bars{margin:24px 0;display:flex;align-items:end;gap:12px;height:75px}.bars i{display:block;width:36px;border-radius:10px 10px 3px 3px;background:#8ba17f}.bars i:nth-child(1){height:42px}.bars i:nth-child(2){height:68px;background:#e36d3c}.bars i:nth-child(3){height:52px;background:#e9bd55}.time{margin-top:auto;color:#7b8279;font-size:9px;letter-spacing:.13em;font-weight:800}
+.quick{border-top:1px solid #ded4c2;border-bottom:1px solid #ded4c2;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;background:#f3ead8}.quick .label2{padding:17px 22px;color:#8c8b7d;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.situation{border:0;border-left:1px solid #ded4c2;background:transparent;padding:17px 25px;color:#445149;font-size:12px;font-weight:750}.situation span{margin-right:7px;color:#c95d33;font-size:16px}
+.finder,.activities{max-width:1180px;margin:0 auto;padding:92px 28px 40px}.heading h2,.banner h2{margin:0;font-family:Georgia,serif;color:#2b382f;font-size:clamp(38px,5vw,58px);letter-spacing:-.045em;line-height:.98}.heading>p:last-child{margin:14px 0 0;color:#6a756d;font-size:15px}.filters{margin-top:38px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.filter{display:grid;gap:8px}.filter span{color:#727a72;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.filter select,.search input{width:100%;border:1px solid #d9ceba;border-radius:12px;background:#fffaf0;color:#344139;padding:15px 14px;outline:none}.filter select:focus,.search input:focus{border-color:#c95d33;box-shadow:0 0 0 3px #c95d331c}.findrow{margin-top:14px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}.search{display:grid;gap:8px}.search label{color:#727a72;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.finderbtn{border:0;border-radius:12px;background:#2f4035;color:#fff;padding:15px 24px;font-weight:800}.finderbtn span{margin-left:14px;color:#e9bd55}
+.activity-head{display:flex;justify-content:space-between;align-items:end;gap:20px}.count{padding-bottom:7px;color:#8b918a;font-size:11px;font-weight:800}.grid{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:#fffaf0;border:1px solid #ded3c0;border-radius:17px;padding:20px;transition:.2s}.card:hover,.card.open{transform:translateY(-3px);box-shadow:0 14px 35px #776a5520}.ctop{display:flex;justify-content:space-between;gap:15px}.ctype{color:#a65c38;font-size:9px;font-weight:900;letter-spacing:.17em;text-transform:uppercase}.card h3{margin:6px 0 0;color:#2e3b33;font-size:21px;letter-spacing:-.025em}.save{border:1px solid #ded3c0;background:transparent;width:34px;height:34px;border-radius:50%;color:#9b9a8c;font-size:20px}.save.saved{color:#c95d33;background:#f9e3d6;border-color:#f0c4ad}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:15px 0}.chips span{border:1px solid #e4dac8;border-radius:999px;padding:6px 8px;color:#777d76;font-size:9px;font-weight:800}.setup{min-height:74px;margin:0;color:#5f6961;font-size:13px;line-height:1.55}.details{border:0;background:transparent;padding:14px 0 0;color:#c95d33;font-size:11px;font-weight:900}.more{margin-top:14px;padding-top:14px;border-top:1px dashed #d8ccb8;color:#5d685f;font-size:12px;line-height:1.5}.tags{display:flex;gap:5px;flex-wrap:wrap}.tags span{color:#879087;font-size:9px}.empty{margin-top:30px;padding:65px 30px;text-align:center;border:1px dashed #cfc2ad;border-radius:18px;background:#f3ead8}.empty button{border:0;border-radius:999px;background:#2f4035;color:#fff;padding:11px 17px;font-size:12px;font-weight:800}.banner{max-width:1180px;margin:55px auto 90px;padding:48px;border-radius:24px;background:#dbe5d5;display:grid;grid-template-columns:.9fr 1.1fr;gap:55px;align-items:center}.banner p{margin:0;color:#59665d;font-size:15px;line-height:1.7}footer{max-width:1180px;margin:0 auto;padding:28px;border-top:1px solid #ded4c2;display:flex;justify-content:space-between;align-items:center;color:#8a8f89;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:850px){.hero{grid-template-columns:1fr;gap:35px;padding-top:42px}.art{min-height:370px}.filters{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.banner{grid-template-columns:1fr;gap:25px;margin-inline:28px}}@media(max-width:600px){.topbar{padding:18px}.nav button{display:none}.hero,.finder,.activities{padding-left:18px;padding-right:18px}.hero{padding-top:34px}.hero h1{font-size:52px}.art{min-height:320px}.paper{width:190px;height:240px;left:21%}.front{left:26%;padding:20px}.quick{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}.quick .label2{display:none}.situation{white-space:nowrap;padding:15px 18px}.filters,.grid,.findrow{grid-template-columns:1fr}.banner{margin:0 18px 55px;padding:30px}footer{margin-inline:18px;padding-inline:0;flex-direction:column;align-items:flex-start;gap:12px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<nav class="topbar">
+<a class="brand" href="#top"><span class="mark">✦</span><span>Busy Family<br><strong>Activity Vault</strong></span></a>
+<div class="nav"><button id="savedNav">Saved 0</button><a href="#activities">Find an activity</a></div>
+</nav>
+
+<section class="hero" id="top">
+<div><p class="eyebrow">THE 10-MINUTE PARENTING TOOLKIT</p><h1>Something to do.<br><em>Right now.</em></h1><p class="lede">When you hear “I’m bored” for the fifth time, don’t search for an idea. Tell the Vault what you have, and get a doable activity.</p><div class="hero-actions"><a class="primary" href="#finder">Find my activity <span>→</span></a><span class="micro">No special supplies. No 30-minute setup.</span></div></div>
+<div class="art" aria-label="Simple activity card illustration" role="img"><div class="sun"></div><div class="paper back"></div><div class="paper front"><span class="star">✦</span><span class="label">TODAY'S<br><b>QUICK WIN</b></span><div class="bars"><i></i><i></i><i></i></div><span class="time">10 MIN · LOW MESS</span></div><div class="floor"></div></div>
+</section>
+
+<section class="quick"><div class="label2">What’s happening?</div><button class="situation" data-q="10">◷ I have 10 minutes</button><button class="situation" data-q="rain">☂ Rainy day</button><button class="situation" data-q="energy">↗ They need to move</button><button class="situation" data-q="travel">⌁ We're traveling</button></section>
+
+<section class="finder" id="finder">
+<div class="heading"><p class="eyebrow">THE ACTIVITY FINDER</p><h2>Tell me what you’ve got.</h2><p>Four tiny choices. One activity you can actually do.</p></div>
+<div class="filters">
+<label class="filter"><span>Child age</span><select id="age"><option>All ages</option><option>2–5</option><option>3–5</option><option>3–6</option><option>3–7</option><option>4–7</option><option>4–8</option><option>5–9</option></select></label>
+<label class="filter"><span>Time</span><select id="time"><option>Any time</option><option>10 min</option><option>15 min</option><option>20 min</option></select></label>
+<label class="filter"><span>Mess</span><select id="mess"><option>Any mess</option><option>Low</option></select></label>
+<label class="filter"><span>Type</span><select id="type"><option>Any type</option><option>Indoor</option><option>Movement</option><option>Creative</option><option>Quiet</option><option>Explore</option><option>Build</option><option>Pretend</option><option>Life Skill</option></select></label>
+</div>
+<div class="findrow"><div class="search"><label for="q">Or search a situation</label><input id="q" placeholder="e.g. rainy day, travel, burn energy"></div><button class="finderbtn" id="show">Show ideas <span>↓</span></button></div>
+</section>
+
+<section class="activities" id="activities">
+<div class="activity-head"><div class="heading"><p class="eyebrow">YOUR SHORTLIST</p><h2>Pick the one that fits.</h2></div><span class="count" id="count">12 activities</span></div>
+<div class="grid" id="grid"></div>
+</section>
+
+<section class="banner"><div><p class="eyebrow">THE BIG IDEA</p><h2>Keep the ideas.<br><em>Lose the overwhelm.</em></h2></div><p>This prototype is designed around the moments parents already ask about: “I have 10 minutes”, “it’s raining”, “they need to move”, “we’re traveling”. The full Vault would turn those moments into a growing library of 100+ activities.</p></section>
+<footer><div class="brand"><span class="mark">✦</span><span>Busy Family<br><strong>Activity Vault</strong></span></div><span>Prototype · built for busy parents</span></footer>
+</div>
+<script>
+const data=[
+["Paper Road Rescue","3–5","10 min","Low","Indoor","Tape a few strips of paper to the floor and turn them into roads. Add toy cars, blocks or stuffed animals as the traffic.","No special supplies. Great when you need a tiny reset between routines.",["10 minutes","no prep","movement"]],
+["Kitchen Treasure Hunt","4–7","15 min","Low","Indoor","Give your child three clues for safe household objects: something round, something soft and something that makes a sound.","Turns ordinary things into a game and buys you a little breathing room.",["rainy day","household","quiet"]],
+["Cushion Island","3–6","10 min","Low","Movement","Put cushions or towels around the room. The floor is lava and your child has to travel between islands.","A fast movement game for the moment when everyone has cabin fever.",["burn energy","no supplies","indoor"]],
+["Sticker Story Cards","3–7","20 min","Low","Creative","Draw three empty boxes on paper. Let your child place stickers in each box, then tell a beginning, middle and ending.","A simple creative prompt that creates a finished little story.",["creative","quiet","screen-free"]],
+["Sock Match Mission","3–6","10 min","Low","Life Skill","Make a pile of clean socks and challenge your child to find pairs. Add a timer or colour hunt for older kids.","A real household job disguised as a game.",["help me","household","10 minutes"]],
+["Shadow Shape Safari","4–8","15 min","Low","Explore","Use a lamp or sunny window to make shadows with hands and safe objects. Guess the shape before revealing it.","Feels magical but needs almost nothing.",["rainy day","science","quiet"]],
+["Tape the Target","3–7","10 min","Low","Movement","Make three targets on the floor with painter's tape or paper. Toss rolled socks and count the points.","A quick energy release using something already in the house.",["burn energy","10 minutes","travel"]],
+["Mystery Bag Guess","4–8","10 min","Low","Quiet","Put a few safe objects in a bag. Let your child feel one without looking and describe what they think it is.","Useful when you need something calm, portable and screen-free.",["travel","restaurant","quiet"]],
+["Cup Tower Challenge","3–8","15 min","Low","Build","Give your child paper or plastic cups and a challenge: tallest tower, strongest bridge or smallest stable stack.","Open-ended building keeps the activity going without complicated instructions.",["build","siblings","no prep"]],
+["Colour Hunt","2–6","10 min","Low","Explore","Call out a colour and let your child find five safe objects around the room. Make it a speed round.","A zero-prep reset that works almost anywhere.",["10 minutes","travel","no prep"]],
+["Laundry Basket Boat","2–5","20 min","Low","Pretend","A laundry basket becomes a boat, spaceship or train. Add cushions and let your child choose the destination.","Big imaginative play from one everyday object.",["pretend","rainy day","household"]],
+["Draw My Instructions","5–9","20 min","Low","Creative","Give your child a silly task to draw as a three-step instruction manual. Then follow their instructions exactly.","A playful way to practice sequencing and communication.",["creative","older kids","quiet"]]
+];
+const grid=document.getElementById("grid"), age=document.getElementById("age"), time=document.getElementById("time"), mess=document.getElementById("mess"), type=document.getElementById("type"), q=document.getElementById("q"), count=document.getElementById("count"), savedNav=document.getElementById("savedNav");
+let saved=JSON.parse(localStorage.getItem("bfav")||"[]"), openId=null, onlySaved=false;
+function render(){
+ const aq=age.value,tq=time.value,mq=mess.value,tq2=type.value,qq=q.value.trim().toLowerCase();
+ const list=data.map((d,i)=>({...d,i})).filter(d=>(aq==="All ages"||d[1]===aq)&&(tq==="Any time"||d[2]===tq)&&(mq==="Any mess"||d[3]===mq)&&(tq2==="Any type"||d[4]===tq2)&&(!qq||[d[0],d[4],...d[7]].join(" ").toLowerCase().includes(qq))&&(!onlySaved||saved.includes(d.i)));
+ count.textContent=list.length+" activit"+(list.length===1?"y":"ies");
+ grid.innerHTML=list.length?list.map(d=>`<article class="card ${openId===d.i?"open":""}">
+ <div class="ctop"><div><span class="ctype">${d[4]}</span><h3>${d[0]}</h3></div>
+ <button class="save ${saved.includes(d.i)?"saved":""}" aria-label="${saved.includes(d.i)?"Remove ":"Save "} ${d[0]}" data-save="${d.i}">${saved.includes(d.i)?"★":"☆"}</button></div>
+ <div class="chips"><span>◷ ${d[2]}</span><span>♧ ${d[3]} mess</span><span>${d[1]}</span></div>
+ <p class="setup">${d[5]}</p><button class="details" data-open="${d.i}">${openId===d.i?"Hide details ↑":"See the quick setup →"}</button>
+ ${openId===d.i?`<div class="more"><strong>Why this works</strong><p>${d[6]}</p><div class="tags">${d[7].map(t=>"<span>#"+t.replaceAll(" ","-")+"</span>").join("")}</div></div>`:""}</article>`).join(""):"<div class='empty'><h3>Nothing quite fits yet.</h3><p>Try widening a filter or search for “10 minutes”.</p><button id='reset'>Reset the finder</button></div>";
+ document.querySelectorAll("[data-save]").forEach(b=>b.addEventListener("click",e=>{const id=Number(e.currentTarget.dataset.save);saved=saved.includes(id)?saved.filter(x=>x!==id):[...saved,id];localStorage.setItem("bfav",JSON.stringify(saved));savedNav.textContent="Saved "+saved.length;render();}));
+ document.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",e=>{openId=openId===Number(e.currentTarget.dataset.open)?null:Number(e.currentTarget.dataset.open);render();}));
+ document.getElementById("reset")?.addEventListener("click",()=>{age.value="All ages";time.value="Any time";mess.value="Any mess";type.value="Any type";q.value="";onlySaved=false;render();});
+}
+[age,time,mess,type].forEach(x=>x.addEventListener("change",render));q.addEventListener("input",render);
+document.getElementById("show").addEventListener("click",()=>document.getElementById("activities").scrollIntoView({behavior:"smooth"}));
+document.querySelectorAll(".situation").forEach(b=>b.addEventListener("click",()=>{const v=b.dataset.q;q.value="";if(v==="10")time.value="10 min";if(v==="rain")q.value="rainy day";if(v==="energy")type.value="Movement";if(v==="travel")q.value="travel";render();document.getElementById("activities").scrollIntoView({behavior:"smooth"});}));
+savedNav.addEventListener("click",()=>{onlySaved=!onlySaved;savedNav.textContent=onlySaved?"All activities":"Saved "+saved.length;render();});
+savedNav.textContent="Saved "+saved.length;render();
+</script>
+</body></html>
